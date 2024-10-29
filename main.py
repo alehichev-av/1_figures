@@ -1,4 +1,10 @@
+#!/usr/bin/env python3
 from math import pi
+
+debug_flag = False
+def d_print(s):
+    if (debug_flag):
+        print(s)
 
 
 class Shape:
@@ -16,6 +22,26 @@ class Shape:
 class Rectangle(Shape):
     """Прямоугольники"""
     name = 'прямоугольник'
+
+    @property
+    def width(self):
+        d_print("Rectangle.width_getter")
+        return self._width
+
+    @property
+    def height(self):
+        d_print("Rectangle.height_getter")
+        return self._height
+
+    @height.setter
+    def height(self, x):
+        d_print("Rectangle.height_setter")
+        self._height = x
+
+    @width.setter
+    def width(self, x):
+        d_print("Rectangle.width_setter")
+        self._width = x
 
     def __init__(self, width, height, x=0, y=0):
         super().__init__(x, y)
@@ -36,6 +62,26 @@ class Rectangle(Shape):
 class Square(Rectangle):
     """Квадраты"""
     name = 'квадрат'
+
+    @property
+    def width(self):
+        d_print("Square.width_getter")
+        return self._side
+
+    @property
+    def height(self):
+        d_print("Square.height_getter")
+        return self._side
+
+    @height.setter
+    def height(self, x):
+        d_print("Square.height_setter")
+        self._side = x
+
+    @width.setter
+    def width(self, x):
+        d_print("Square.width_setter")
+        self._side = x
 
     def __init__(self, side, x=0, y=0):
         super().__init__(side, side, x, y)
@@ -67,3 +113,5 @@ if __name__ == '__main__':
     figures = [Rectangle(2, 3), Square(2, 1, 1), Circle(1)]
     for figure in figures:
         print(figure)
+    # a = Square(2, 1, 1)
+    # print(a.area())
